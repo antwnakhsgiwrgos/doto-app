@@ -11,6 +11,13 @@ export class TodoComponent implements OnInit {
   public firstName = 'Pepegas ';
   public lastName = 'Kifinas';
 
+  public search: string ="";
+
+  // Modal From Variables for new Task
+  public taskTitle: string;
+  public taskDueDate: Date;
+
+
   public numbers: number[] = [1, 2, 3, 4, 5, 6, 7];
 
   public swalOptions =  {
@@ -67,11 +74,11 @@ export class TodoComponent implements OnInit {
 
     get completedTasks(){
       return this.todos.filter(task => task.completed === true);
-    };
+    }
 
   get uncompletedTasks(){
     return this.todos.filter(task => task.completed === false);
-  };
+  }
 
 
   ngOnInit() {
@@ -87,6 +94,17 @@ export class TodoComponent implements OnInit {
 
   public completeTask(task: ITask) {
   task.completed = true;
+  }
+
+  public addTask(){
+    let task = {
+      _id: this.todos.length + 1 + "",
+      completed: false,
+      title: this.taskTitle,
+      dueDate: this.taskDueDate,
+    };
+
+    this.todos.push(task);
   }
 
 }
